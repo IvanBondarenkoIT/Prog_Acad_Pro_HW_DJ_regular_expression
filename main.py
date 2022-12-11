@@ -27,11 +27,26 @@ def find_inclusion(txt, pattern):
         return None
 
 
-text = "Rbr RRbr Rr Rbbr Rbbbr Rbb bbr"
-print(find_all_inclusion(text, r"Rb+r"))
-text = "9979-99999999 9999"
-print(find_inclusion(text, r"(\d{4}(-| |:)?){4}"))
-text = "sd7sddfs-Rf@dfssdf.dsf"
-print(find_inclusion(text, r"([A-z]+)-?(\S+)[@]\S+[.]...$"))
-text = "ds-fT4"
-print(find_inclusion(text, r"\w{2,10}"))
+if __name__ == "__main__":
+    text = "Rbr RRbr Rr Rbbr Rbbbr Rbb bbr"
+    print(find_all_inclusion(text, r"Rb+r"))
+    text = "9979-99999999 9999"
+
+    pattern = r"(\d{4}(-|\s|:)?){4}"
+    print(find_inclusion(text, pattern))
+
+    pattern = r"^([A-Z]|[a-z]|[0-9]|_)+-?([A-Z]|[a-z]|[0-9]|_)+[@]\w+[.]\w{1,3}$"
+    text = "sd7s_ddfs-Rf@dfssdf.dsf"
+    print(find_inclusion(text, pattern))
+    text = "d_7s-ddfs-Rf@dfssdf.dsf"
+    print(find_inclusion(text, pattern))
+    text = "d7s_ddfs-Rf@d.ds"
+    print(find_inclusion(text, pattern))
+    text = "-d7s_ddfsRf@d.ds"
+    print(find_inclusion(text, pattern))
+
+    pattern = r"^(\w|\d){2,10}$"
+    text = "rsrrtfT4"
+    print(find_inclusion(text, pattern))
+    text = "rs-fT4"
+    print(find_inclusion(text, pattern))
